@@ -11,6 +11,7 @@ namespace LOLS.Commands
     public class Ping : ModuleBase<SocketCommandContext>
     {
         [Command("ping")]
+        [Alias("핑")]
         public async Task PingC()
         {
             EmbedBuilder builder = new EmbedBuilder();
