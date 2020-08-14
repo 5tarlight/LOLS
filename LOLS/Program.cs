@@ -16,7 +16,7 @@ namespace LOLS
     {
         static void Main(string[] args) => new Program().RunBotAsync().GetAwaiter().GetResult();
 
-        private DiscordSocketClient client;
+        public static DiscordSocketClient client;
         private CommandService commands;
         private IServiceProvider services;
 

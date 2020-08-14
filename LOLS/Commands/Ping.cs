@@ -12,7 +12,7 @@ namespace LOLS.Commands
         [Command("ping")]
         public async Task PingC()
         {
-            await ReplyAsync("pong");
+            await ReplyAsync($"**{Program.client.Latency}** ms");
         }
     }
 }
