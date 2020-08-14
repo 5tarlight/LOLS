@@ -30,19 +30,13 @@ namespace LOLS
                 .AddSingleton(commands)
                 .AddSingleton<ConfigHandler>()
                 .BuildServiceProvider();
-            client.Log += _client_Log;
+            client.Log += Logger.Log;
 
             await services.GetService<ConfigHandler>().PopulateConfig();
             await RegisterCommandAsync();
             await client.LoginAsync(TokenType.Bot, services.GetService<ConfigHandler>().Token);
             await client.StartAsync();
             await Task.Delay(-1);
-        }
-
-        private Task _client_Log(LogMessage arg)
-        {
-            Console.WriteLine(arg);
-            return Task.CompletedTask;
         }
 
         public async Task RegisterCommandAsync()
@@ -61,8 +55,9 @@ namespace LOLS
             int argPos = 0;
             if(message.HasStringPrefix("!", ref argPos))
             {
+                await Logger.Log($"log {message.Author.Id} {message.Content.Split(' ')[0]}");
                 var result = await commands.ExecuteAsync(context, argPos, services);
-                if (!result.IsSuccess) Console.WriteLine(result.ErrorReason);
+                if (!result.IsSuccess) await Logger.Log($"error {result.ErrorReason}");
             }
         }
     }

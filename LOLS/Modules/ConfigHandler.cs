@@ -34,7 +34,7 @@ namespace LOLS.Modules
         public async Task PopulateConfig()
         {
             configPath = Path.Combine(Directory.GetCurrentDirectory(), "config.json").Replace(@"\", @"\\");
-            Console.WriteLine(configPath);
+            await Logger.Log($"info {configPath}");
 
             if (!File.Exists(configPath))
             {
@@ -43,7 +43,7 @@ namespace LOLS.Modules
                     sw.WriteLine(JsonConvert.SerializeObject(conf));
                 }
 
-                Console.WriteLine("WARNING! New Config initialized! Need to fill in values before running commands!");
+                await Logger.Log("warn New Config initialized! Need to fill in values before running commands!");
                 throw new Exception("NO CONFIG AVAILABLE! Go to executable path and fill out newly created file!");
             }
 
