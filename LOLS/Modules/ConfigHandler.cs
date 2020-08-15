@@ -10,6 +10,7 @@ namespace LOLS.Modules
         struct Config
         {
             public string token;
+            public string prefix;
         }
 
         private Config conf;
@@ -23,11 +24,20 @@ namespace LOLS.Modules
             }
         }
 
+        public string Prefix
+        {
+            get
+            {
+                return conf.prefix;
+            }
+        }
+
         public ConfigHandler()
         {
             conf = new Config()
             {
-                token = ""
+                token = "",
+                prefix = "!"
             };
         }
 

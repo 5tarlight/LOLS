@@ -126,6 +126,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\Ping.cs" />
     <Compile Include="Modules\ConfigHandler.cs" />
     <Compile Include="Modules\Logger.cs" />

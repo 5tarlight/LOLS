@@ -53,7 +53,7 @@ namespace LOLS
             if (message.Author.IsBot) return;
 
             int argPos = 0;
-            if(message.HasStringPrefix("!", ref argPos))
+            if(message.HasStringPrefix(services.GetService<ConfigHandler>().Prefix, ref argPos))
             {
                 await Logger.Log($"log {message.Author.Id} {message.Content.Split(' ')[0]}");
                 var result = await commands.ExecuteAsync(context, argPos, services);
